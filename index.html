@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Backlogless</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <img id="header-image" src="img/img.jpg" alt="Inspiration">
+    <h1>Backlogless</h1>
+  </header>
+  <main>
+    <ul id="task-list"></ul>
+  </main>
+  <div id="help-modal" hidden>
+    <div class="modal-content">
+      <h2>Help & Shortcuts</h2>
+      <ul>
+        <li>ctrl+enter: New task below</li>
+        <li>up/down (shift+p/shift+n): Move selection</li>
+        <li>alt+up/down: Move task up/down</li>
+        <li>enter/f2: Edit task</li>
+        <li>ctrl+left/right: Unindent/Indent</li>
+        <li>shift+left/right: Mark active/completed/remove</li>
+        <li>shift+enter: Complete and remove</li>
+        <li>ctrl+i: Toggle header image</li>
+        <li>shift+t: Toggle theme</li>
+      </ul>
+      <button id="close-help">Close</button>
+    </div>
+  </div>
+  <div id="settings-menu">
+    <div class="settings-pref-row">
+      <label for="bullet-select">Prefix:</label>
+      <select id="bullet-select">
+        <option value="none">none</option>
+        <option value="dot">•</option>
+        <option value="dash">-</option>
+      </select>
+    </div>
+    <button id="theme-toggle">Toggle Theme</button>
+    <button id="help-btn">Help</button>
+    <button id="clear-tasks">Clear Tasks</button>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html> 

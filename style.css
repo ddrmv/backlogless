@@ -1,0 +1,195 @@
+:root {
+  --bg: #fff;
+  --text: #111;
+  --accent: #2ecc40;
+  --completed: #bbb;
+  --menu-bg: #f4f4f4;
+  --menu-border: #ccc;
+  --menu-text: #222;
+}
+[data-theme="dark"] {
+  --bg: #222;
+  --text: #f5f5f5;
+  --accent: #2ecc40;
+  --completed: #555;
+  --menu-bg: #2a2a2a;
+  --menu-border: #444;
+  --menu-text: #f5f5f5;
+}
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, sans-serif;
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+header {
+  width: 100%;
+  max-width: 620px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 2rem 0 1rem 0;
+  position: relative;
+}
+#header-image {
+  display: none;
+  max-width: 600px;
+  height: auto;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+}
+h1 {
+  font-size: 1.5rem;
+  margin: 0;
+  text-align: center;
+  flex: 1;
+}
+#settings-menu {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: var(--menu-bg);
+  border: 1px solid var(--menu-border);
+  color: var(--menu-text);
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  padding: 0.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  z-index: 100;
+}
+#settings-menu button {
+  background: none;
+  color: var(--menu-text);
+  border: none;
+  text-align: left;
+  padding: 0.3rem 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 0.2rem 0;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: background 0.15s;
+}
+#settings-menu button:hover {
+  background: rgba(0,0,0,0.06);
+}
+#settings-menu .settings-pref-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0.2rem 0;
+}
+#settings-menu .settings-pref-row label {
+  padding: 0.3rem 0.2rem 0.3rem 0.8rem;
+  margin: 0;
+  font-size: 1rem;
+  font-family: inherit;
+  color: var(--menu-text);
+  background: none;
+  border-radius: 4px 0 0 4px;
+  display: block;
+}
+#settings-menu .settings-pref-row select {
+  padding: 0.3rem 0.8rem;
+  font-size: 1rem;
+  font-family: inherit;
+  color: var(--menu-text);
+  background: var(--menu-bg);
+  border: none;
+  border-radius: 0 4px 4px 0;
+  outline: none;
+  cursor: pointer;
+  transition: background 0.15s;
+  margin: 0;
+  text-align: left;
+  height: 2.1em;
+  box-sizing: border-box;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+#settings-menu .settings-pref-row select option {
+  background: var(--menu-bg);
+  color: var(--menu-text);
+}
+#settings-menu select:focus {
+  background: rgba(46,204,64,0.07);
+}
+main {
+  width: 100%;
+  max-width: 690px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#task-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+.task {
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  padding: 0.5rem 0.5rem;
+  margin-bottom: 2px;
+  font-size: 1rem;
+  border-radius: 4px;
+  transition: background 0.1s;
+}
+.task.active {
+  background: rgba(46,204,64,0.12);
+}
+.task.completed {
+  color: var(--completed);
+}
+.task.first {
+  font-weight: bold;
+}
+.task[contenteditable="true"] {
+  outline: 1px solid var(--accent);
+  background: rgba(46,204,64,0.07);
+}
+#help-modal {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+#help-modal[hidden] {
+  display: none;
+}
+.modal-content {
+  background: var(--bg);
+  color: var(--text);
+  border-radius: 8px;
+  padding: 2rem;
+  min-width: 260px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.12);
+  text-align: left;
+}
+button {
+  font-family: inherit;
+  font-size: 1rem;
+  border: none;
+  background: var(--accent);
+  color: #fff;
+  border-radius: 4px;
+  padding: 0.3rem 0.8rem;
+  cursor: pointer;
+  margin: 0.2rem 0;
+}
+button:active {
+  opacity: 0.8;
+} 
