@@ -2,6 +2,8 @@
 
 Lightweight, browser-based mini task tracker. Simple, keyboard-driven. Inspired by emacs org-mode, designed to avoid accruing backlogs. The main feature is lack of features.
 
+![](https://i.imgur.com/VffXOjC.png)
+
 ## Features
 
 ### Task Management
