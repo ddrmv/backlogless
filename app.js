@@ -270,8 +270,12 @@ window.addEventListener('keydown', e => {
     return;
   }
   if (e.ctrlKey && e.key === 'Enter') {
+    e.preventDefault();
+    e.stopPropagation();
     addTask(activeIdx);
   } else if (e.altKey && e.key === 'Enter') {
+    e.preventDefault();
+    e.stopPropagation();
     addTaskAbove(activeIdx);
   } else if ((e.key === 'Enter' && !e.ctrlKey && !e.shiftKey && !e.altKey) || e.key === 'F2') {
     // Only trigger edit if not already editing
@@ -281,21 +285,33 @@ window.addEventListener('keydown', e => {
       e.preventDefault();
     }
   } else if (e.key === 'ArrowUp') {
+    e.preventDefault();
     activeIdx = Math.max(0, activeIdx - 1);
     render();
   } else if (e.key === 'ArrowDown') {
+    e.preventDefault();
     activeIdx = Math.min(tasks.length - 1, activeIdx + 1);
     render();
   } else if (e.ctrlKey && e.key === 'ArrowLeft') {
+    e.preventDefault();
+    e.stopPropagation();
     indentTask(activeIdx, -1);
   } else if (e.ctrlKey && e.key === 'ArrowRight') {
+    e.preventDefault();
+    e.stopPropagation();
     indentTask(activeIdx, 1);
   } else if (e.shiftKey && e.key === 'ArrowRight') {
+    e.preventDefault();
+    e.stopPropagation();
     if (tasks[activeIdx]?.status === 'active') completeTask(activeIdx);
     else if (tasks[activeIdx]?.status === 'completed') completeTask(activeIdx);
   } else if (e.shiftKey && e.key === 'ArrowLeft') {
+    e.preventDefault();
+    e.stopPropagation();
     if (tasks[activeIdx]?.status === 'completed') activateTask(activeIdx);
   } else if (e.shiftKey && e.key === 'Enter') {
+    e.preventDefault();
+    e.stopPropagation();
     if (tasks[activeIdx] && tasks[activeIdx].status === 'active') {
       // Mark as completed, then remove
       tasks[activeIdx].status = 'completed';
@@ -314,18 +330,26 @@ window.addEventListener('keydown', e => {
   } else if (e.shiftKey && (e.key === 'T' || e.key === 't')) {
     // Prevent theme toggle if editing a task
     if (document.activeElement && document.activeElement.isContentEditable) return;
+    e.preventDefault();
+    e.stopPropagation();
     toggleTheme();
   } else if (e.ctrlKey && (e.key === 'I' || e.key === 'i')) {
     // Prevent image toggle if editing a task
     if (document.activeElement && document.activeElement.isContentEditable) return;
+    e.preventDefault();
+    e.stopPropagation();
     toggleHeaderImage();
   } else if (e.ctrlKey && (e.key === 'M' || e.key === 'm')) {
     // Prevent menu toggle if editing a task
     if (document.activeElement && document.activeElement.isContentEditable) return;
+    e.preventDefault();
+    e.stopPropagation();
     toggleSettingsMenu();
   } else if (e.key === 'Delete') {
     // Only delete task if not editing text
     if (!(document.activeElement && document.activeElement.isContentEditable)) {
+      e.preventDefault();
+      e.stopPropagation();
       deleteTask(activeIdx);
     }
   }
