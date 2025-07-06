@@ -17,6 +17,7 @@ Lightweight, browser-based mini task tracker. Simple, keyboard-driven. Inspired 
 
 #### Task Creation & Editing
 - ctrl + enter: Create new task below current one (same indent level)
+- alt + enter: Create new task above current one (same indent level)
 - enter or F2: Edit current task
 - double-click: Edit task text
 - ctrl + ←/→: Decrease/increase indent
@@ -31,6 +32,7 @@ Lightweight, browser-based mini task tracker. Simple, keyboard-driven. Inspired 
 #### Other
 - shift + t: Toggle theme (light/dark)
 - ctrl + i: Show/hide header image
+- ctrl + m: Toggle settings menu
 
 
 ### Notes
@@ -49,9 +51,9 @@ or
 
 - Click on Help for shortcuts
 - Edit task limits: Change `MAX_TASKS` and `MAX_INDENT` constants if you want less / more tasks
-- Image: Swap the image in `img/` to place a funny cat image
+- Image: Swap the image in `img/` to place a funny cat image (not included)
 
 
 ## License
 
-MIT
+Code is licensed under the MIT License. The "Dusk" GIF image is copyrighted by Romain Courtois and used with permission. The landscape painting, "View of Dordrecht from the Dordtse Kil" by Jan van Goyen, is in the public domain.

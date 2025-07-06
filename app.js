@@ -36,7 +36,7 @@ let activeIdx = 0;
 let bulletStyle = loadBulletStyle();
 if (bulletSelect) {
   bulletSelect.value = bulletStyle;
-  bulletSelect.onchange = function() {
+  bulletSelect.onchange = function () {
     bulletStyle = bulletSelect.value;
     saveBulletStyle(bulletStyle);
     render();
@@ -45,7 +45,7 @@ if (bulletSelect) {
 render();
 
 function grabTheme() {
-  const theme = localStorage.getItem(THEME_KEY) || 'light';
+  const theme = localStorage.getItem(THEME_KEY) || 'dark';
   document.documentElement.setAttribute('data-theme', theme);
 }
 function toggleTheme() {
@@ -153,6 +153,26 @@ function addTask(idx) {
   render();
   editTask(activeIdx);
 }
+
+function addTaskAbove(idx) {
+  if (tasks.length >= MAX_TASKS) return;
+  const now = Date.now();
+  let indent = 0;
+  if (tasks.length > 0 && typeof tasks[idx]?.indent_level === 'number') {
+    indent = tasks[idx].indent_level;
+  }
+  const t = { text: '', indent_level: indent, created_at: now, status: 'active', completed_at: null };
+  if (tasks.length === 0) {
+    tasks.push(t);
+    activeIdx = 0;
+  } else {
+    tasks.splice(idx, 0, t);
+    activeIdx = idx;
+  }
+  saveTasks();
+  render();
+  editTask(activeIdx);
+}
 function completeTask(idx) {
   if (tasks[idx].status === 'completed') {
     tasks.splice(idx, 1);
@@ -195,6 +215,12 @@ function clearAllTasks() {
 function toggleHeaderImage() {
   if (headerImage) {
     headerImage.style.display = headerImage.style.display === 'block' ? 'none' : 'block';
+  }
+}
+
+function toggleSettingsMenu() {
+  if (settingsMenu) {
+    settingsMenu.style.display = settingsMenu.style.display === 'none' ? 'flex' : 'none';
   }
 }
 function deleteTask(idx) {
@@ -245,6 +271,8 @@ window.addEventListener('keydown', e => {
   }
   if (e.ctrlKey && e.key === 'Enter') {
     addTask(activeIdx);
+  } else if (e.altKey && e.key === 'Enter') {
+    addTaskAbove(activeIdx);
   } else if ((e.key === 'Enter' && !e.ctrlKey && !e.shiftKey && !e.altKey) || e.key === 'F2') {
     // Only trigger edit if not already editing
     const li = taskList.children[activeIdx];
@@ -291,6 +319,10 @@ window.addEventListener('keydown', e => {
     // Prevent image toggle if editing a task
     if (document.activeElement && document.activeElement.isContentEditable) return;
     toggleHeaderImage();
+  } else if (e.ctrlKey && (e.key === 'M' || e.key === 'm')) {
+    // Prevent menu toggle if editing a task
+    if (document.activeElement && document.activeElement.isContentEditable) return;
+    toggleSettingsMenu();
   } else if (e.key === 'Delete') {
     // Only delete task if not editing text
     if (!(document.activeElement && document.activeElement.isContentEditable)) {
@@ -301,4 +333,4 @@ window.addEventListener('keydown', e => {
 themeToggle.onclick = toggleTheme;
 helpBtn.onclick = () => { helpModal.hidden = false; };
 closeHelp.onclick = () => { helpModal.hidden = true; };
-clearTasks.onclick = clearAllTasks; 
+clearTasks.onclick = clearAllTasks;
